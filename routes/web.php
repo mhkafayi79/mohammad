@@ -18,3 +18,7 @@ Route::get('/', [homeController::class,'getposts']);
 Route::get('/blog/{post}', [homeController::class,'getpost'])->name('post-view');
 Route::post('/blog/{post}', [homeController::class,'saveComment']);
 Route::post('/blog', [homeController::class,'savePost']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

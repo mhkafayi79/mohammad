@@ -14,7 +14,7 @@ class homeController extends Controller
     public function getposts()
     {
         $posts = Post::all();
-        return view('welcome',compact('posts'));
+        return view('pages.welcome',compact('posts'));
     }
     public function getpost(Post $post)
     {
