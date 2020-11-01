@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -13,6 +15,12 @@ class homeController extends Controller
 {
     public function getposts()
     {
+        // Auth::logout();
+        // dd(Auth::user()->id);
+        // dd(auth()/->user()->id);
+        // dd(Auth::id());
+        Auth::login(User::find(4));
+        dd(Auth::user()->toArray());
         $posts = Post::all();
         return view('pages.welcome',compact('posts'));
     }

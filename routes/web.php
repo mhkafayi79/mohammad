@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [homeController::class,'getposts']);
-Route::get('/blog/{post}', [homeController::class,'getpost'])->name('post-view');
-Route::post('/blog/{post}', [homeController::class,'saveComment']);
-Route::post('/blog', [homeController::class,'savePost']);
+Route::group(['prefix' => 'blog'], function () {
+    Route::get('{post?}', [homeController::class,'getpost'])->name('post-view');
+Route::post('{post}', [homeController::class,'saveComment']);
+Route::post('blog', [homeController::class,'savePost']);
+});
+
 
 Auth::routes();
 

@@ -6,7 +6,7 @@
 <div class="col col-lg-3">
     <div class="panel panel-default ">
         <div class="panel-body">
-        <a href="blog/{{$post->id}}">
+        <a href="{{ route('post-view',['post'=>$post->id]) }}">
             {{ $post->title }}
         </a>
         </div>
