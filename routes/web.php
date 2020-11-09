@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\taskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::loginUsingId(1);
 
-Route::get('/', [homeController::class,'getposts']);
+Route::get('/', [homeController::class,'getposts'])->middleware('adminAccess');
 Route::group(['prefix' => 'blog'], function () {
     Route::get('{post?}', [homeController::class,'getpost'])->name('post-view');
 Route::post('{post}', [homeController::class,'saveComment']);
-Route::post('blog', [homeController::class,'savePost']);
+Route::post('', [homeController::class,'savePost']);
 });
-
+Route::resource('task', taskController::class);
 
 Auth::routes();
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
@@ -13,14 +14,15 @@ use Illuminate\Support\Facades\DB;
 
 class homeController extends Controller
 {
+    
     public function getposts()
     {
         // Auth::logout();
         // dd(Auth::user()->id);
         // dd(auth()/->user()->id);
         // dd(Auth::id());
-        Auth::login(User::find(4));
-        dd(Auth::user()->toArray());
+        // Auth::login(User::find(4));
+        // dd(Auth::user()->toArray());
         $posts = Post::all();
         return view('pages.welcome',compact('posts'));
     }
@@ -45,8 +47,9 @@ class homeController extends Controller
         // return redirect()->back();
         return back();
     }
-    public function savePost(Request $request)
+    public function savePost(PostRequest $request)
     {
+        // $request->validate([]);
         // $post = new Post();
         // $post->title = $request->get('title');
         // $post->content = $request->get('content');

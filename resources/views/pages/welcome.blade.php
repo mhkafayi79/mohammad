@@ -1,6 +1,14 @@
 @extends('layouts.siteLayout')
 
 @section('container')
+@if ($errors)
+@foreach ($errors->all() as $error)    
+<div class="alert alert-danger">
+    {{ $error }}
+</div>
+@endforeach
+
+@endif
 @if($posts->count()>0)
 @foreach($posts as $key => $post)
 <div class="col col-lg-3">
